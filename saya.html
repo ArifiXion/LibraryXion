@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rak saya - LibraXion</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="features.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">LibraXion</div>
+        <div class="nav-links"><a href="index.html">← Beranda</a></div>
+    </nav>
+    <main class="loan-wrap">
+        <h1>Rak saya</h1>
+        <section class="profile" id="profile">
+            <div class="avatar-box"><span class="big-avatar" id="avatar"></span><label class="btn-sm photo-btn">Ganti foto<input type="file" id="photo" accept="image/*" hidden></label></div>
+            <div class="profile-body">
+                <h2 id="pName"></h2><p class="muted" id="pEmail"></p>
+                <div class="loan-stats" id="pStats"></div>
+                <div class="profile-forms">
+                    <div><h3>Data diri</h3><label for="pNama">Nama</label><input id="pNama"><label for="pKelas">Kelas</label><input id="pKelas" placeholder="Contoh: XI RPL 1"><label for="pNis">NIS</label><input id="pNis" inputmode="numeric"><button class="btn-sm solid" id="saveProf">Simpan</button><span class="pin-msg" id="profMsg" role="status"></span></div>
+                    <div><h3>Ubah password</h3><label for="pOld">Password lama</label><input id="pOld" type="password" autocomplete="current-password"><label for="pNew">Password baru</label><input id="pNew" type="password" autocomplete="new-password"><button class="btn-sm solid" id="savePass">Ubah password</button><span class="pin-msg" id="passMsg" role="status"></span></div>
+                </div>
+            </div>
+        </section>
+        <section><h2>Favorit</h2><div id="favList"></div></section>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-brand">LibraXion</a>
+                    <p>Perpustakaan digital SMK Bakti Persada Kendal. Lihat ringkasan novel dan buku pelajaran kapan saja.</p>
+                </div>
+                <nav aria-label="Navigasi footer">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="index.html#koleksi">Koleksi buku</a></li>
+                        <li><a href="index.html?genre=drama#koleksi">Novel Drama</a></li>
+                        <li><a href="index.html?genre=fantasy#koleksi">Novel Fantasy</a></li>
+                        <li><a href="index.html?genre=komedi#koleksi">Novel Komedi</a></li>
+                        <li><a href="index.html?genre=pelajaran#koleksi">Buku Pelajaran</a></li>
+                        <li data-guest><a href="login.html">Masuk</a></li>
+                        <li data-guest><a href="register.html">Daftar</a></li>
+                        <li data-user hidden><a href="pinjaman.html">Pinjaman saya</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <h4>Informasi</h4>
+                    <ul>
+                        <li>16 buku: 12 novel dan 4 buku pelajaran</li>
+                        <li>Wajib daftar akun untuk membaca dan meminjam</li>
+                        <li>Pinjam 1 sampai 30 hari, maksimal 3 buku</li>
+                        <li>Denda keterlambatan Rp500 per hari</li>
+                        <li>Buku hilang didenda Rp100.000</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><a href="https://wa.me/6282226209972" target="_blank" rel="noopener">WhatsApp: 0822-2620-9972</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="team">
+                <h4>Tim pengembang</h4>
+                <ul class="team-list">
+                    <li class="member"><span class="avatar" aria-hidden="true">A</span><span><strong>Aiman</strong><small>Design &amp; Development</small></span></li>
+                    <li class="member"><span class="avatar" aria-hidden="true">W</span><span><strong>Waffa</strong><small>Web Research</small></span></li>
+                    <li class="member"><span class="avatar" aria-hidden="true">R</span><span><strong>Ramdhani</strong><small>Testing &amp; Release</small></span></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 LibraXion. Semua hak dilindungi.</span>
+                <span>SMK Bakti Persada Kendal</span>
+            </div>
+        </div>
+    </footer>
+    <script src="auth.js"></script>
+    <script src="loans.js"></script>
+    <script src="loanui.js"></script>
+    <script>
+        Auth.requireLogin('');
+        Auth.renderNav('');
+        const $ = id => document.getElementById(id), u = Auth.current() || { email: '', nama: '' };
+        function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+        const PK = 'lbx_photo_' + u.email, PR = 'pd_profiles';
+        function avatar() { const p = localStorage.getItem(PK), a = $('avatar'); a.replaceChildren(); if (p) { const i = el('img'); i.src = p; i.alt = 'Foto profil'; a.appendChild(i); } else a.textContent = u.nama.trim()[0].toUpperCase(); }
+        $('photo').onchange = e => { const f = e.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { const im = new Image(); im.onload = () => { const c = document.createElement('canvas'), s = Math.min(im.width, im.height); c.width = c.height = 160; c.getContext('2d').drawImage(im, (im.width - s) / 2, (im.height - s) / 2, s, s, 0, 0, 160, 160); let ok = true; try { localStorage.setItem(PK, c.toDataURL('image/jpeg', .8)); } catch (x) { ok = false; } avatar(); if (ok) { const a = $('avatar'); a.classList.remove('av-pop'); void a.offsetWidth; a.classList.add('av-pop'); window.dispatchEvent(new Event('lbx:photo')); if (typeof LoanUI !== 'undefined') LoanUI.toast('Foto profil berhasil dipasang.'); } else if (typeof LoanUI !== 'undefined') LoanUI.toast('Foto gagal disimpan. Coba gambar yang lebih kecil.'); }; im.src = r.result; }; r.readAsDataURL(f); };
+        function stats() {
+            const loans = Loans.active().length + Loans.history().length + Loans.lostAll().length;
+            const fine = Loans.active().reduce((s, l) => s + Loans.fineNow(l), 0) + Loans.unpaidTotal(), st = (v, k) => { const d = el('div'); d.append(el('strong', '', v), el('span', '', k)); return d; };
+            $('pStats').replaceChildren(st(loans, 'total peminjaman'), st(Fav.list().length, 'favorit'), st(Loans.rupiah(fine), 'denda belum lunas'));
+        }
+        function fillProfile() { const p = (JSON.parse(localStorage.getItem(PR)) || {})[u.email] || {}; $('pName').textContent = u.nama; $('pEmail').textContent = u.email; $('pNama').value = u.nama; $('pKelas').value = p.kelas || ''; $('pNis').value = p.nis || ''; }
+        $('saveProf').onclick = () => {
+            const m = $('profMsg'), nis = $('pNis').value.trim(), kelas = $('pKelas').value.trim();
+            if (nis && !/^\d{4,12}$/.test(nis)) { m.textContent = 'NIS harus 4 sampai 12 digit angka.'; return; }
+            const r = Auth.rename($('pNama').value); if (!r.ok) { m.textContent = r.msg; m.classList.remove('ok'); return; }
+            const all = JSON.parse(localStorage.getItem(PR)) || {}; all[u.email] = { kelas, nis }; localStorage.setItem(PR, JSON.stringify(all));
+            m.textContent = 'Tersimpan.'; m.classList.add('ok'); $('pName').textContent = $('pNama').value.trim();
+        };
+        $('savePass').onclick = async () => { const r = await Auth.changePassword($('pOld').value, $('pNew').value); $('passMsg').textContent = r.ok ? 'Password berhasil diubah.' : r.msg; $('passMsg').classList.toggle('ok', r.ok); if (r.ok) { $('pOld').value = $('pNew').value = ''; } };
+        function card(x, extra) { const r = el('article', 'loan-row'), a = el('a'), i = el('img'); a.href = x.href; i.src = x.cover; i.alt = 'Sampul ' + x.title; a.appendChild(i); const info = el('div', 'loan-info'); info.appendChild(el('h3', '', x.title)); if (x.author) info.appendChild(el('p', 'muted', x.author)); r.append(a, info, el('div', 'loan-actions')); extra(info, r.lastChild); return r; }
+        function render() {
+            const fv = Fav.list();
+            $('favList').replaceChildren();
+            if (!fv.length) $('favList').appendChild(el('p', 'muted', 'Belum ada favorit. Tekan ikon hati pada sampul buku di beranda.'));
+            fv.forEach(x => $('favList').appendChild(card(x, (info, act) => { const go = el('a', 'borrow-button', 'Lihat buku'); go.href = x.href; const rm = el('button', 'btn-sm danger', 'Hapus favorit'); rm.onclick = () => { Fav.toggle(x); render(); stats(); }; act.append(go, rm); })));
+            stats();
+        }
+        avatar(); fillProfile(); render();
+    </script>
+</body>
+</html>

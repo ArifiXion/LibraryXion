@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk - LibraXion</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="features.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">LibraXion</div>
+        <div class="nav-links"><a href="index.html">← Beranda</a></div>
+    </nav>
+    <main class="auth-wrap">
+        <div class="auth-card">
+            <h1>Masuk</h1>
+            <p class="auth-sub">Login untuk melihat novel.</p>
+            <div id="msg" class="auth-msg" hidden></div>
+            <div id="f">
+                <label>Email</label><input type="email" id="email" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" placeholder="nama@email.com">
+                <label>Password</label><input type="password" id="pw" autocomplete="current-password" placeholder="Password">
+                <button class="borrow-button" id="go">Masuk</button>
+            </div>
+            <p class="auth-alt">Belum punya akun? <a href="register.html">Daftar di sini</a></p>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-brand">LibraXion</a>
+                    <p>Perpustakaan digital SMK Bakti Persada Kendal. Lihat ringkasan novel dan buku pelajaran kapan saja.</p>
+                </div>
+                <nav aria-label="Navigasi footer">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="index.html#koleksi">Koleksi buku</a></li>
+                        <li><a href="index.html?genre=drama#koleksi">Novel Drama</a></li>
+                        <li><a href="index.html?genre=fantasy#koleksi">Novel Fantasy</a></li>
+                        <li><a href="index.html?genre=komedi#koleksi">Novel Komedi</a></li>
+                        <li><a href="index.html?genre=pelajaran#koleksi">Buku Pelajaran</a></li>
+                        <li data-guest><a href="login.html">Masuk</a></li>
+                        <li data-guest><a href="register.html">Daftar</a></li>
+                        <li data-user hidden><a href="pinjaman.html">Pinjaman saya</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <h4>Informasi</h4>
+                    <ul>
+                        <li>16 buku: 12 novel dan 4 buku pelajaran</li>
+                        <li>Wajib daftar akun untuk membaca dan meminjam</li>
+                        <li>Pinjam 1 sampai 30 hari, maksimal 3 buku</li>
+                        <li>Denda keterlambatan Rp500 per hari</li>
+                        <li>Buku hilang didenda Rp100.000</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><a href="https://wa.me/6282226209972" target="_blank" rel="noopener">WhatsApp: 0822-2620-9972</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="team">
+                <h4>Tim pengembang</h4>
+                <ul class="team-list">
+                    <li class="member"><span class="avatar" aria-hidden="true">A</span><span><strong>Aiman</strong><small>Design &amp; Development</small></span></li>
+                    <li class="member"><span class="avatar" aria-hidden="true">W</span><span><strong>Waffa</strong><small>Web Research</small></span></li>
+                    <li class="member"><span class="avatar" aria-hidden="true">R</span><span><strong>Ramdhani</strong><small>Testing &amp; Release</small></span></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 LibraXion. Semua hak dilindungi.</span>
+                <span>SMK Bakti Persada Kendal</span>
+            </div>
+        </div>
+    </footer>
+    <script src="auth.js"></script>
+    <script>
+        const $ = id => document.getElementById(id);
+        function show(t) { const m = $('msg'); m.textContent = t; m.hidden = false; }
+        if (Auth.current()) location.replace('index.html');
+        $('go').onclick = async () => {
+            $('go').disabled = true;
+            const r = await Auth.login($('email').value, $('pw').value);
+            if (r.ok) location.href = Auth.nextUrl(); else { show(r.msg); $('go').disabled = false; }
+        };
+        document.addEventListener('keydown', e => { if (e.key === 'Enter') $('go').click(); });
+    </script>
+</body>
+</html>

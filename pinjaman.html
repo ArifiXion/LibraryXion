@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinjaman saya - LibraXion</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="features.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">LibraXion</div>
+        <div class="nav-links"><a href="index.html">← Beranda</a></div>
+    </nav>
+    <main class="loan-wrap">
+        <h1>Pinjaman saya</h1>
+        <div class="loan-stats" id="stats"></div>
+        <div class="banner" id="banner" hidden></div>
+        <p class="rule-note"><strong>Ketentuan denda:</strong> terlambat Rp500 per hari. Jika buku yang dipinjam <strong>hilang, kamu didenda Rp100.000</strong> (ditambah denda terlambat bila ada). Selama denda belum lunas, kamu tidak bisa meminjam atau memesan buku lain.</p>
+        <section id="secReady" hidden><h2>Siap diambil</h2><div id="readyList"></div></section>
+        <section><h2>Sedang dipinjam</h2><div id="activeList"></div></section>
+        <section id="secLost" hidden><h2>Denda buku hilang</h2><div id="lostList"></div></section>
+        <section id="secQueue" hidden><h2>Antrean saya</h2><div id="queueList"></div></section>
+        <section><h2>Riwayat</h2><div id="histList"></div></section>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-brand">LibraXion</a>
+                    <p>Perpustakaan digital SMK Bakti Persada Kendal. Lihat ringkasan novel dan buku pelajaran kapan saja.</p>
+                </div>
+                <nav aria-label="Navigasi footer">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="index.html#koleksi">Koleksi buku</a></li>
+                        <li><a href="index.html?genre=drama#koleksi">Novel Drama</a></li>
+                        <li><a href="index.html?genre=fantasy#koleksi">Novel Fantasy</a></li>
+                        <li><a href="index.html?genre=komedi#koleksi">Novel Komedi</a></li>
+                        <li><a href="index.html?genre=pelajaran#koleksi">Buku Pelajaran</a></li>
+                        <li data-guest><a href="login.html">Masuk</a></li>
+                        <li data-guest><a href="register.html">Daftar</a></li>
+                        <li data-user hidden><a href="pinjaman.html">Pinjaman saya</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <h4>Informasi</h4>
+                    <ul>
+                        <li>16 buku: 12 novel dan 4 buku pelajaran</li>
+                        <li>Wajib daftar akun untuk membaca dan meminjam</li>
+                        <li>Pinjam 1 sampai 30 hari, maksimal 3 buku</li>
+                        <li>Denda keterlambatan Rp500 per hari</li>
+                        <li>Buku hilang didenda Rp100.000</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><a href="https://wa.me/6282226209972" target="_blank" rel="noopener">WhatsApp: 0822-2620-9972</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="team">
+                <h4>Tim pengembang</h4>
+                <ul class="team-list">
+                    <li class="member"><span class="avatar" aria-hidden="true">A</span><span><strong>Aiman</strong><small>Design &amp; Development</small></span></li>
+                    <li class="member"><span class="avatar" aria-hidden="true">W</span><span><strong>Waffa</strong><small>Web Research</small></span></li>
+                    <li class="member"><span class="avatar" aria-hidden="true">R</span><span><strong>Ramdhani</strong><small>Testing &amp; Release</small></span></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 LibraXion. Semua hak dilindungi.</span>
+                <span>SMK Bakti Persada Kendal</span>
+            </div>
+        </div>
+    </footer>
+    <script src="auth.js"></script>
+    <script src="loans.js"></script>
+    <script src="loanui.js"></script>
+    <script>
+        Auth.requireLogin('');
+        Auth.renderNav('');
+        const $ = id => document.getElementById(id);
+        function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+        const bookOf = x => ({ href: x.href, title: x.title, author: x.author, genre: x.genre, cover: x.cover });
+        function thumb(x) { const a = el('a'); a.href = x.href; const i = el('img'); i.src = x.cover; i.alt = 'Sampul ' + x.title; a.appendChild(i); return a; }
+        function twoStep(btn, label, fn) { let sure = false; const o = btn.textContent; btn.onclick = () => { if (!sure) { sure = true; btn.textContent = label; setTimeout(() => { sure = false; btn.textContent = o; }, 4000); return; } fn(); }; }
+        function head(x) { const i = el('div', 'loan-info'); i.appendChild(el('h3', '', x.title)); i.appendChild(el('p', 'muted', x.author + (x.code ? ' · Kode ' + x.code : ''))); return i; }
+        function activeRow(l) {
+            const r = el('article', 'loan-row'), info = head(l), d = Loans.daysLeft(l), fine = Loans.fineNow(l);
+            info.appendChild(el('span', 'chip' + (d < 0 ? ' late' : d <= 1 ? ' warn' : ''), d < 0 ? 'Terlambat ' + (-d) + ' hari' : d === 0 ? 'Jatuh tempo hari ini' : 'Sisa ' + d + ' hari'));
+            if (fine) info.appendChild(el('span', 'chip late', 'Denda ' + Loans.rupiah(fine)));
+            info.appendChild(el('p', 'muted', (new Date(l.start) > new Date() ? 'Mulai dipinjam ' : 'Dipinjam ') + Loans.fmtDay(l.start) + '. Kembalikan paling lambat ' + Loans.fmtDay(l.due) + (l.extended ? ' (sudah diperpanjang)' : '') + '.'));
+            const act = el('div', 'loan-actions'), read = el('a', 'borrow-button', 'Lihat buku'); read.href = l.href;
+            const bukti = el('button', 'btn-sm', 'Bukti pinjam'); bukti.onclick = () => LoanUI.receipt(l);
+            const ext = el('button', 'btn-sm', 'Perpanjang ' + Loans.EXTEND_DAYS + ' hari');
+            const a = Loans.availability(l.href), why = l.extended ? 'Perpanjangan hanya satu kali' : d < 0 ? 'Kembalikan dulu karena sudah lewat batas' : (a.queue || a.held) ? 'Ada pembaca lain yang mengantre' : '';
+            ext.disabled = !!why; ext.title = why; ext.onclick = () => { const x = Loans.extend(l.id); if (!x.ok) LoanUI.toast(x.msg); render(); };
+            const back = el('button', 'btn-sm solid', 'Kembalikan');
+            twoStep(back, 'Yakin kembalikan?', () => { const x = Loans.giveBack(l.id); render(); if (x && x.fine) LoanUI.toast('Dikembalikan. Denda keterlambatan ' + Loans.rupiah(x.fine) + ' dibayar ke pustakawan.'); else LoanUI.toast('Terima kasih, buku sudah dikembalikan.'); });
+            const lost = el('button', 'btn-sm danger', 'Lapor hilang');
+            twoStep(lost, 'Denda ' + Loans.rupiah(Loans.LOST_FINE) + '. Yakin?', () => { const x = Loans.reportLost(l.id); render(); if (x) LoanUI.toast('Buku dilaporkan hilang. Denda ' + Loans.rupiah(x.fine) + ' wajib dilunasi ke pustakawan.'); });
+            act.append(read, bukti, ext, back, lost); r.append(thumb(l), info, act); return r;
+        }
+        function readyRow(q) {
+            const r = el('article', 'loan-row'), info = head(q);
+            info.appendChild(el('span', 'chip ok', 'Siap diambil'));
+            info.appendChild(el('p', 'muted', 'Ambil sebelum ' + Loans.fmtDT(q.expiresAt) + '. Setelah itu giliranmu diberikan ke pembaca berikutnya.'));
+            const act = el('div', 'loan-actions'), go = el('button', 'btn-sm solid', 'Ambil sekarang'), no = el('button', 'btn-sm', 'Lepas giliran');
+            go.onclick = () => LoanUI.open(bookOf(q), 'claim'); twoStep(no, 'Yakin lepas?', () => { Loans.cancelReservation(q.id); render(); });
+            act.append(go, no); r.append(thumb(q), info, act); return r;
+        }
+        function queueRow(q) {
+            const r = el('article', 'loan-row'), info = head(q), a = Loans.availability(q.href);
+            info.appendChild(el('span', 'chip warn', 'Antrean ke-' + Loans.position(q)));
+            info.appendChild(el('p', 'muted', 'Dipesan ' + Loans.fmt(q.createdAt) + '. Kamu mendapat pemberitahuan di halaman ini saat novel tersedia.'));
+            const act = el('div', 'loan-actions'), no = el('button', 'btn-sm', 'Batalkan antrean');
+            twoStep(no, 'Yakin batalkan?', () => { Loans.cancelReservation(q.id); render(); });
+            act.append(no); r.append(thumb(q), info, act); return r;
+        }
+        function lostRow(l) {
+            const r = el('article', 'loan-row'), info = head(l);
+            info.appendChild(el('span', 'chip ' + (l.paid ? 'ok' : 'late'), l.paid ? 'Denda lunas' : 'Denda belum lunas ' + Loans.rupiah(l.fine)));
+            info.appendChild(el('p', 'muted', 'Dilaporkan hilang ' + Loans.fmt(l.lostAt) + '. Rincian: denda buku hilang ' + Loans.rupiah(Loans.LOST_FINE) + (l.lateFine ? ' + terlambat ' + l.lateDays + ' hari ' + Loans.rupiah(l.lateFine) : '') + '.' + (l.paid ? ' Lunas ' + Loans.fmt(l.paidAt) + '.' : '')));
+            const act = el('div', 'loan-actions'), bukti = el('button', 'btn-sm', 'Bukti'); bukti.onclick = () => LoanUI.receipt(l); act.appendChild(bukti);
+            if (!l.paid) {
+                const wa = el('a', 'btn-sm', 'Hubungi pustakawan'); wa.target = '_blank'; wa.rel = 'noopener';
+                wa.href = 'https://wa.me/6282226209972?text=' + encodeURIComponent('Halo, saya ' + l.nama + ' (NIS ' + l.nis + ') ingin melunasi denda buku hilang "' + l.title + '" kode ' + l.code + ' sebesar ' + Loans.rupiah(l.fine) + '.');
+                const pay = el('button', 'btn-sm solid', 'Konfirmasi lunas'), box = el('div', 'pin-box'), inp = el('input'), ok = el('button', 'btn-sm solid', 'Simpan'), msg = el('span', 'pin-msg');
+                inp.type = 'password'; inp.placeholder = 'Kode pustakawan'; inp.autocomplete = 'off'; box.hidden = true; box.append(inp, ok, msg);
+                pay.onclick = () => { box.hidden = !box.hidden; if (!box.hidden) inp.focus(); };
+                ok.onclick = () => { const x = Loans.payLost(l.id, inp.value); if (!x.ok) { msg.textContent = x.msg; return; } render(); LoanUI.toast('Denda ' + Loans.rupiah(l.fine) + ' tercatat lunas. Kamu bisa meminjam lagi.'); };
+                act.append(wa, pay); r.append(thumb(l), info, act, box); return r;
+            }
+            r.append(thumb(l), info, act); return r;
+        }
+        function histRow(l) {
+            const r = el('article', 'loan-row hist'), info = head(l);
+            info.appendChild(el('p', 'muted', 'Dipinjam ' + Loans.fmt(l.start) + ', dikembalikan ' + Loans.fmt(l.returnedAt) + (l.fine ? '. Denda ' + Loans.rupiah(l.fine) + ' (' + l.lateDays + ' hari terlambat).' : '. Tepat waktu.')));
+            const b = el('button', 'btn-sm', 'Bukti'); b.onclick = () => LoanUI.receipt(l); info.appendChild(b);
+            r.append(thumb(l), info); return r;
+        }
+        function fill(id, items, build, empty) {
+            const box = $(id); box.replaceChildren();
+            if (!items.length) { if (empty) box.appendChild(empty()); return; }
+            items.forEach(x => box.appendChild(build(x)));
+        }
+        function render() {
+            const act = Loans.active().sort((x, y) => new Date(x.due) - new Date(y.due)), res = Loans.reservations(), ready = res.filter(r => r.status === 'siap'), wait = res.filter(r => r.status === 'menunggu'), h = Loans.history();
+            const fine = act.reduce((s, l) => s + Loans.fineNow(l), 0);
+            const stat = (v, k) => { const d = el('div'); d.append(el('strong', '', v), el('span', '', k)); return d; };
+            $('stats').replaceChildren(stat(act.length + ' dari ' + Loans.MAX, 'slot pinjaman terpakai'), stat(res.length + ' dari ' + Loans.MAX_RES, 'slot antrean terpakai'), stat(Loans.rupiah(fine + Loans.unpaidTotal()), 'denda belum lunas'));
+            const lostAll = Loans.lostAll(); $('secLost').hidden = !lostAll.length; fill('lostList', lostAll, lostRow);
+            const late = act.filter(l => Loans.daysLeft(l) < 0).length;
+            const up = Loans.unpaid().length; $('banner').hidden = !(late || up); $('banner').textContent = up ? 'Ada denda buku hilang ' + Loans.rupiah(Loans.unpaidTotal()) + ' yang belum lunas. Kamu belum bisa meminjam atau memesan buku.' : late + ' pinjaman sudah lewat batas. Kembalikan dulu sebelum meminjam buku lain.';
+            $('secReady').hidden = !ready.length; $('secQueue').hidden = !wait.length;
+            fill('readyList', ready, readyRow); fill('queueList', wait, queueRow); fill('activeList', act, activeRow, () => { const e = el('div', 'empty'); e.append(el('p', '', 'Belum ada buku yang kamu pinjam.')); const go = el('a', 'borrow-button', 'Pilih buku'); go.href = 'index.html#koleksi'; e.appendChild(go); return e; });
+            fill('histList', h, histRow, () => el('p', 'muted', 'Riwayat pengembalian akan muncul di sini.'));
+            const nb = document.querySelector('.nav-badge'); if (nb) { const n = Loans.badge(); nb.textContent = n; nb.hidden = !n; }
+        }
+        LoanUI.onChange = render;
+        render();
+    </script>
+</body>
+</html>

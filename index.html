@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibraXion - Perpustakaan Digital SMK Bakti Persada Kendal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="features.js"></script>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="brand">LibraXion</div>
+        <div class="nav-links">
+            <a href="#beranda">Beranda</a>
+            <a href="#koleksi">Koleksi Buku</a>
+            <a href="#tentang">Tentang</a>
+        </div>
+    </nav>
+
+    <!-- SLIDESHOW -->
+    <section class="stage" id="beranda" aria-roledescription="carousel" aria-label="Novel pilihan">
+        <h1 class="stage-site">Perpustakaan Digital SMK Bakti Persada Kendal</h1>
+        <div class="stage-track" id="track"></div>
+        <div class="stage-controls">
+            <div class="dots" id="dots"></div>
+            <div class="ctl-group">
+                <button class="ctl" id="pauseBtn" aria-label="Jeda slideshow">❚❚</button>
+                <button class="ctl" id="prevBtn" aria-label="Novel sebelumnya">‹</button>
+                <button class="ctl" id="nextBtn" aria-label="Novel berikutnya">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- KOLEKSI NOVEL -->
+    <section class="section collection" id="koleksi">
+        <div class="section-heading">
+            <h2>Koleksi buku</h2>
+            <p>16 buku: 12 novel dari tiga genre dan 4 buku pelajaran. Pilih kategori untuk menyaring daftar.</p>
+        </div>
+        <div class="search-box"><input id="q" type="search" placeholder="Cari judul, penulis, atau kategori" aria-label="Cari buku" autocomplete="off"><span id="qCount" role="status"></span></div>
+        <div class="category-container">
+            <button class="category active" data-genre="all">Semua <span class="count">16</span></button>
+            <button class="category" data-genre="drama">Drama <span class="count">4</span></button>
+            <button class="category" data-genre="fantasy">Fantasy <span class="count">4</span></button>
+            <button class="category" data-genre="komedi">Komedi <span class="count">4</span></button>
+            <button class="category" data-genre="pelajaran">Buku Pelajaran <span class="count">4</span></button>
+        </div>
+
+        <p id="pickInfo" class="pick-info">Menampilkan semua buku. Pilih kategori untuk menyaring.</p>
+        <div class="book-container">
+            <!-- 1. LASKAR PELANGI -->
+            <div class="book-card" data-genre="drama">
+                <div class="book-cover cover-laskar-bg">
+                    <img src="NovelDrama/Noveldramalaskar.jpg" alt="Laskar Pelangi" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Drama</span>
+                    <h3>Laskar Pelangi</h3>
+                    <p>Andrea Hirata</p>
+                    <a href="NovelDrama.html/laskarpelangi.html" class="borrow-button">Lihat novel</a>
+                </div>
+            </div>
+
+            <!-- 2. PERAHU KERTAS -->
+            <div class="book-card" data-genre="drama">
+                <div class="book-cover cover-perahu-bg">
+                    <img src="NovelDrama/Noveldramaperahukertas.jpg" alt="Perahu Kertas" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Drama</span>
+                    <h3>Perahu Kertas</h3>
+                    <p>Dee Lestari</p>
+                    <a href="NovelDrama.html/perahukertas.html" class="borrow-button">Lihat novel</a>
+                </div>
+            </div>
+
+            <!-- 3. CRITICAL ELEVEN -->
+            <div class="book-card" data-genre="drama">
+                <div class="book-cover cover-critical-bg">
+                    <img src="NovelDrama/Noveldramacriticaleleven.jpg" alt="Critical Eleven" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Drama</span>
+                    <h3>Critical Eleven</h3>
+                    <p>Ika Natassa</p>
+                    <a href="NovelDrama.html/criticaleleven.html" class="borrow-button">Lihat novel</a>
+                </div>
+            </div>
+
+            <!-- 4. RONGGENG DUKUH PARUK -->
+            <div class="book-card" data-genre="drama">
+                <div class="book-cover cover-ronggeng-bg">
+                    <img src="NovelDrama/NoveldeamaRonggengDukuhParuk.jpg" alt="Ronggeng Dukuh Paruk" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Drama</span>
+                    <h3>Ronggeng Dukuh Paruk</h3>
+                    <p>Ahmad Tohari</p>
+                    <a href="NovelDrama.html/ronggeng.html" class="borrow-button">Lihat novel</a>
+                </div>
+            </div>
+
+            <!-- 5. BUMI -->
+            <div class="book-card" data-genre="fantasy">
+                <div class="book-cover cover-bumi-bg">
+                    <img src="NovelFantasy/Novelfantasybumi.jpg" alt="Bumi" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Fantasy</span>
+                    <h3>Bumi</h3>
+                    <p>Tere Liye</p>
+                    <a href="NovelFantasy.html/bumiseries.html" class="borrow-button">Lihat novel</a>
+                </div>
+            </div>
+
+            <!-- 6. BULAN -->
+            <div class="book-card" data-genre="fantasy">
+                <div class="book-cover cover-bulan-bg">
+                    <img src="NovelFantasy/Novelfantasybulan.jpg" alt="Bulan" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Fantasy</span>
+                    <h3>Bulan</h3>
+                    <p>Tere Liye</p>
+                    <a href="NovelFantasy.html/bulanseries.html" class="borrow-button">Lihat novel</a>
+                </div>
+            </div>
+
+            <!-- 7. MATAHARI -->
+            <div class="book-card" data-genre="fantasy">
+                <div class="book-cover cover-matahari-bg">
+                    <img src="NovelFantasy/Novelfantasymatahari.jpg" alt="Matahari" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Fantasy</span>
+                    <h3>Matahari</h3>
+                    <p>Tere Liye</p>
+                    <a href="NovelFantasy.html/matahariseries.html" class="borrow-button">Lihat novel</a>
+                </div>
+            </div>
+
+            <!-- 8. THE NIGHT CIRCUS -->
+            <div class="book-card" data-genre="fantasy">
+                <div class="book-cover cover-circus-bg">
+                    <img src="NovelFantasy/Novelfantasynightcircus.jpg" alt="The Night Circus" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Fantasy</span>
+                    <h3>The Night Circus</h3>
+                    <p>Erin Morgenstern</p>
+                    <a href="NovelFantasy.html/nightcircus.html" class="borrow-button">Lihat novel</a>
+                </div>
+            </div>
+
+            <!-- 9. KAMBING JANTAN -->
+            <div class="book-card" data-genre="komedi">
+                <div class="book-cover cover-komedi-bg">
+                    <img src="NovelKomedi/Novelkomedikambingjantan.jpg" alt="Kambing Jantan" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Komedi</span>
+                    <h3>Kambing Jantan</h3>
+                    <p>Raditya Dika</p>
+                    <a href="NovelKomedi.html/kambingjantan.html" class="borrow-button">Lihat novel</a>
+                </div>
+            </div>
+
+            <!-- 10. MARMUT MERAH JAMBU -->
+            <div class="book-card" data-genre="komedi">
+                <div class="book-cover cover-marmut-bg">
+                    <img src="NovelKomedi/Novelkomedimarmutmerahjambu.jpg" alt="Marmut Merah Jambu" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Komedi</span>
+                    <h3>Marmut Merah Jambu</h3>
+                    <p>Raditya Dika</p>
+                    <a href="NovelKomedi.html/marmutmerahjambu.html" class="borrow-button">Lihat novel</a>
+                </div>
+            </div>
+
+            <!-- 11. MANUSIA SETENGAH SALMON -->
+            <div class="book-card" data-genre="komedi">
+                <div class="book-cover cover-salmon-bg">
+                    <img src="NovelKomedi/Novelkomedimanusiasetengahsalmon.jpg" alt="Manusia Setengah Salmon" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Komedi</span>
+                    <h3>Manusia Setengah Salmon</h3>
+                    <p>Raditya Dika</p>
+                    <a href="NovelKomedi.html/manusiasetengahsalmon.html" class="borrow-button">Lihat novel</a>
+                </div>
+            </div>
+
+            <!-- 12. JOMBLO -->
+            <div class="book-card" data-genre="komedi">
+                <div class="book-cover cover-jomblo-bg">
+                    <img src="NovelKomedi/Novelkomedijomblo.jpg" alt="Jomblo" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Komedi</span>
+                    <h3>Jomblo</h3>
+                    <p>Adhitya Mulya</p>
+                    <a href="NovelKomedi.html/jomblo.html" class="borrow-button">Lihat novel</a>
+                </div>
+            </div>
+
+            <!-- 13. MATEMATIKA XI -->
+            <div class="book-card" data-genre="pelajaran">
+                <div class="book-cover">
+                    <img src="BukuPelajaran/BukumatematikaXI.png" alt="Matematika Kelas XI" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Buku Pelajaran</span>
+                    <h3>Matematika</h3>
+                    <p>Buku Siswa Kelas XI</p>
+                    <a href="BukuPelajaran.html/matematika.html" class="borrow-button">Lihat buku</a>
+                </div>
+            </div>
+
+            <!-- 14. INFORMATIKA XI -->
+            <div class="book-card" data-genre="pelajaran">
+                <div class="book-cover">
+                    <img src="BukuPelajaran/BukuinformatikaXI.png" alt="Informatika Kelas XI" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Buku Pelajaran</span>
+                    <h3>Informatika</h3>
+                    <p>Buku Siswa Kelas XI</p>
+                    <a href="BukuPelajaran.html/informatika.html" class="borrow-button">Lihat buku</a>
+                </div>
+            </div>
+
+            <!-- 15. BAHASA INGGRIS XI -->
+            <div class="book-card" data-genre="pelajaran">
+                <div class="book-cover">
+                    <img src="BukuPelajaran/BukubahasainggrisIX.png" alt="Bahasa Inggris Kelas XI" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Buku Pelajaran</span>
+                    <h3>Bahasa Inggris</h3>
+                    <p>Buku Siswa Kelas XI</p>
+                    <a href="BukuPelajaran.html/bahasainggris.html" class="borrow-button">Lihat buku</a>
+                </div>
+            </div>
+
+            <!-- 16. SEJARAH XI -->
+            <div class="book-card" data-genre="pelajaran">
+                <div class="book-cover">
+                    <img src="BukuPelajaran/BukusejarahXI.png" alt="Sejarah Kelas XI" class="book-cover-poster">
+                </div>
+                <div class="book-info">
+                    <span class="book-category">Buku Pelajaran</span>
+                    <h3>Sejarah</h3>
+                    <p>Buku Siswa Kelas XI</p>
+                    <a href="BukuPelajaran.html/sejarah.html" class="borrow-button">Lihat buku</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TENTANG & FOOTER -->
+    <section class="about" id="tentang">
+        <div class="about-content">
+            <h2>Ruang baca digital untuk siswa SMK Bakti Persada Kendal</h2>
+            <p>Lihat ringkasan dan sinopsis novel serta buku pelajaran pilihan kapan saja. Daftar akun sekali, lalu pilih kategori dan mulai menjelajah.</p>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-brand">LibraXion</a>
+                    <p>Perpustakaan digital SMK Bakti Persada Kendal. Lihat ringkasan novel dan buku pelajaran kapan saja.</p>
+                </div>
+                <nav aria-label="Navigasi footer">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="index.html#koleksi">Koleksi buku</a></li>
+                        <li><a href="index.html?genre=drama#koleksi">Novel Drama</a></li>
+                        <li><a href="index.html?genre=fantasy#koleksi">Novel Fantasy</a></li>
+                        <li><a href="index.html?genre=komedi#koleksi">Novel Komedi</a></li>
+                        <li><a href="index.html?genre=pelajaran#koleksi">Buku Pelajaran</a></li>
+                        <li data-guest><a href="login.html">Masuk</a></li>
+                        <li data-guest><a href="register.html">Daftar</a></li>
+                        <li data-user hidden><a href="pinjaman.html">Pinjaman saya</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <h4>Informasi</h4>
+                    <ul>
+                        <li>16 buku: 12 novel dan 4 buku pelajaran</li>
+                        <li>Wajib daftar akun untuk membaca dan meminjam</li>
+                        <li>Pinjam 1 sampai 30 hari, maksimal 3 buku</li>
+                        <li>Denda keterlambatan Rp500 per hari</li>
+                        <li>Buku hilang didenda Rp100.000</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><a href="https://wa.me/6282226209972" target="_blank" rel="noopener">WhatsApp: 0822-2620-9972</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="team">
+                <h4>Tim pengembang</h4>
+                <ul class="team-list">
+                    <li class="member"><span class="avatar" aria-hidden="true">A</span><span><strong>Aiman</strong><small>Design &amp; Development</small></span></li>
+                    <li class="member"><span class="avatar" aria-hidden="true">W</span><span><strong>Waffa</strong><small>Web Research</small></span></li>
+                    <li class="member"><span class="avatar" aria-hidden="true">R</span><span><strong>Ramdhani</strong><small>Testing &amp; Release</small></span></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 LibraXion. Semua hak dilindungi.</span>
+                <span>SMK Bakti Persada Kendal</span>
+            </div>
+        </div>
+    </footer>
+    <!-- POPUP WAJIB LOGIN -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+            <button class="modal-x" id="mClose" aria-label="Tutup">&times;</button>
+            <div class="modal-icon">🔒</div>
+            <h3 id="mTitle">Daftar dulu untuk melanjutkan</h3>
+            <p>Untuk membaca atau meminjam buku, kamu perlu punya akun LibraXion. Gratis dan hanya butuh beberapa detik.</p>
+            <a href="register.html" id="mReg" class="borrow-button">Daftar sekarang</a>
+            <a href="login.html" id="mLogin" class="modal-link">Sudah punya akun? <b>Masuk</b></a>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="loans.js"></script>
+    <script src="loanui.js"></script>
+    <script>
+        Auth.renderNav('');
+        const cats = document.querySelectorAll('.category[data-genre]'), cards = document.querySelectorAll('.book-card'), info = document.getElementById('pickInfo');
+        const names = {drama:'Drama', fantasy:'Fantasy', komedi:'Komedi', pelajaran:'Buku Pelajaran'};
+        let curG = 'all', qs = '';
+        function applyFilter() {
+            const w = qs.trim().toLowerCase().split(/\s+/).filter(Boolean); let n = 0;
+            cards.forEach(k => { const txt = (k.querySelector('h3').textContent + ' ' + k.querySelector('.book-info p').textContent + ' ' + k.querySelector('.book-category').textContent).toLowerCase();
+                const ok = (curG === 'all' || k.dataset.genre === curG) && w.every(x => txt.includes(x)); k.hidden = !ok; if (ok) n++; });
+            document.getElementById('qCount').textContent = n ? n + ' buku' : 'Tidak ada buku yang cocok';
+        }
+        document.getElementById('q').addEventListener('input', e => { qs = e.target.value; applyFilter(); });
+        function filterGenre(g) {
+            cats.forEach(x => x.classList.toggle('active', x.dataset.genre === g));
+            curG = g; applyFilter();
+            info.textContent = g === 'all' ? 'Menampilkan semua buku. Pilih kategori untuk menyaring.' : 'Menampilkan ' + (g === 'pelajaran' ? '' : 'novel ') + names[g] + '. Pilih "Semua" untuk menampilkan semuanya.';
+        }
+        cats.forEach(c => c.onclick = () => {
+            // klik kategori yang sedang aktif = kembali ke semua buku
+            filterGenre(c.classList.contains('active') ? 'all' : c.dataset.genre);
+            document.getElementById('koleksi').scrollIntoView({behavior:'smooth'});
+        });
+        const q = new URLSearchParams(location.search).get('genre');
+        filterGenre(names[q] ? q : 'all');
+        // ===== Slideshow =====
+        const featured = [
+            ['Laskar Pelangi', 'Sepuluh anak buruh timah di Belitung berjuang tetap bersekolah di tengah keterbatasan.'],
+            ['Bumi', 'Raib, gadis biasa yang bisa menghilang, menemukan dunia paralel bersama dua sahabatnya.'],
+            ['Informatika', 'Dasar algoritma, pengolahan data, dan jaringan komputer sebagai bekal dunia digital.'],
+            ['Marmut Merah Jambu', 'Kisah cinta pertama di bangku sekolah yang canggung, jujur, dan bikin tertawa.'],
+            ['Perahu Kertas', 'Kugy dan Keenan mengejar mimpi masing-masing, lalu bertemu kembali lewat dongeng dan lukisan.'],
+            ['Sejarah', 'Menelusuri jejak kerajaan, masuknya Islam, masa kolonial, hingga lahirnya Indonesia.'],
+            ['The Night Circus', 'Sirkus misterius yang hanya buka saat malam menjadi arena duel dua pesulap muda.'],
+            ['Manusia Setengah Salmon', 'Raditya Dika menceritakan pindah rumah dan memulai hidup baru dengan caranya yang kocak.']
+        ];
+        const track = document.getElementById('track'), dotsEl = document.getElementById('dots'), stage = document.querySelector('.stage');
+        const slides = [], dots = [];
+        let cur = 0;
+        featured.forEach(([title, blurb], i) => {
+            const card = [...cards].find(c => c.querySelector('h3').textContent.trim().toLowerCase() === title.toLowerCase()) || [...cards].find(c => c.querySelector('h3').textContent.toLowerCase().includes(title.split(' ').pop().toLowerCase()));
+            if (!card) return;
+            const img = card.querySelector('img').getAttribute('src'), by = card.querySelector('.book-info p').textContent;
+            const tag = card.querySelector('.book-category').textContent.trim(), href = card.querySelector('.borrow-button').getAttribute('href');
+            const el = document.createElement('article');
+            el.className = 'slide'; el.setAttribute('role', 'group'); el.setAttribute('aria-roledescription', 'slide');
+            el.innerHTML = '<div class="slide-bg" aria-hidden="true"><img src="' + img + '" alt=""></div>' +
+                '<div class="slide-text"><span class="tag">' + tag + '</span><h2></h2><p class="by"></p><p class="blurb"></p>' +
+                '<a class="read-link" href="' + href + '">' + (card.dataset.genre === 'pelajaran' ? 'Lihat buku' : 'Lihat novel') + '</a></div>' +
+                '<img class="slide-cover" src="' + img + '" alt="Sampul ' + title + '">';
+            el.querySelector('h2').textContent = card.querySelector('h3').textContent;
+            el.querySelector('.by').textContent = by; el.querySelector('.blurb').textContent = blurb;
+            track.appendChild(el); slides.push(el);
+            const d = document.createElement('button');
+            d.className = 'dot'; d.setAttribute('aria-label', 'Tampilkan ' + title);
+            d.onclick = () => go(slides.indexOf(el)); dotsEl.appendChild(d); dots.push(d);
+        });
+        // Slideshow jalan sendiri; pengguna tetap bebas menggeser, menekan panah/titik, atau memakai keyboard kapan saja
+        const DUR = 7000, pauseBtn = document.getElementById('pauseBtn');
+        let paused = false, elapsed = 0, last = performance.now(), sx = 0, dx = 0, down = false, moved = false;
+        function place(off) { track.style.transform = 'translateX(calc(' + (-cur * 100) + '% + ' + (off || 0) + 'px))'; }
+        function go(n) {
+            cur = (n + slides.length) % slides.length; elapsed = 0; place(0);
+            slides.forEach((s, i) => { s.classList.toggle('active', i === cur); s.setAttribute('aria-label', (i + 1) + ' dari ' + slides.length); s.inert = i !== cur; });
+            dots.forEach((d, i) => { d.classList.toggle('active', i === cur); d.style.setProperty('--p', 0); i === cur ? d.setAttribute('aria-current', 'true') : d.removeAttribute('aria-current'); });
+        }
+        function setPaused(p) { paused = p; pauseBtn.textContent = p ? '\u25B6' : '\u275A\u275A'; pauseBtn.setAttribute('aria-label', p ? 'Putar slideshow' : 'Jeda slideshow'); }
+        function tick(now) {
+            const dt = Math.min(now - last, 100); last = now;
+            if (!paused && !down && !document.hidden && slides.length > 1) { elapsed += dt; if (elapsed >= DUR) go(cur + 1); }
+            if (dots[cur]) dots[cur].style.setProperty('--p', paused ? 0 : Math.min(1, elapsed / DUR));
+            requestAnimationFrame(tick);
+        }
+        pauseBtn.onclick = () => setPaused(!paused);
+        document.getElementById('prevBtn').onclick = () => go(cur - 1);
+        document.getElementById('nextBtn').onclick = () => go(cur + 1);
+        document.addEventListener('keydown', e => {
+            if ((e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+            const r = stage.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+            go(cur + (e.key === 'ArrowRight' ? 1 : -1));
+        });
+        // Geser bebas dengan jari atau mouse: slide mengikuti gerakan, lepas untuk pindah
+        track.addEventListener('pointerdown', e => { if (e.button > 0) return; down = true; moved = false; sx = e.clientX; dx = 0; });
+        track.addEventListener('pointermove', e => {
+            if (!down) return; dx = e.clientX - sx;
+            if (!moved && Math.abs(dx) > 6) { moved = true; track.classList.add('dragging'); try { track.setPointerCapture(e.pointerId); } catch (x) {} }
+            if (moved) place(dx);
+        });
+        function endDrag() {
+            if (!down) return; down = false; track.classList.remove('dragging');
+            if (moved) go(Math.abs(dx) > track.clientWidth * 0.15 ? cur + (dx < 0 ? 1 : -1) : cur);
+        }
+        track.addEventListener('pointerup', endDrag); track.addEventListener('pointercancel', endDrag);
+        track.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+        track.addEventListener('dragstart', e => e.preventDefault());
+        if (slides.length) { go(0); requestAnimationFrame(tick); }
+
+        // Wajib login/daftar sebelum membaca: tampilkan popup
+        const modal = document.getElementById('authModal'), mReg = document.getElementById('mReg'), mLog = document.getElementById('mLogin');
+        const closeModal = () => modal.classList.remove('open');
+        document.addEventListener('click', e => {
+            const a = e.target.closest('.borrow-button, .read-link');
+            if (!a || a.closest('#authModal') || Auth.current()) return;
+            e.preventDefault();
+            const nx = '?next=' + encodeURIComponent(a.getAttribute('href'));
+            mReg.href = 'register.html' + nx; mLog.href = 'login.html' + nx;
+            modal.classList.add('open');
+        });
+        document.getElementById('mClose').onclick = closeModal;
+        modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+        // ===== Peminjaman & booking =====
+        const bookInfo = (c) => ({ href: c.dataset.href, title: c.querySelector('h3').textContent, author: c.querySelector('.book-info p').textContent, genre: c.dataset.genre, cover: c.querySelector('img').getAttribute('src') });
+        cards.forEach(card => {
+            const read = card.querySelector('.borrow-button'); card.dataset.href = read.getAttribute('href');
+            const st = document.createElement('p'); st.className = 'loan-status'; st.hidden = true;
+            const box = document.createElement('div'); box.className = 'card-actions';
+            const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'pinjam-btn'; btn.textContent = 'Pinjam';
+            read.replaceWith(box); box.append(read, btn); box.before(st);
+        });
+        function refreshLoans() {
+            const logged = !!Auth.current();
+            cards.forEach(card => {
+                const href = card.dataset.href, st = card.querySelector('.loan-status'), b = card.querySelector('.pinjam-btn'), av = Loans.availability(href);
+                const l = logged ? Loans.find(href) : null, r = logged ? Loans.myReservation(href) : null;
+                let text, label, mode, tone = '';
+                if (l) { const d = Loans.daysLeft(l); text = d < 0 ? 'Terlambat ' + (-d) + ' hari' : d === 0 ? 'Dipinjam, jatuh tempo hari ini' : 'Dipinjam, sisa ' + d + ' hari'; label = 'Lihat pinjaman'; mode = 'view'; tone = 'warn'; }
+                else if (r && r.status === 'siap') { text = 'Siap diambil sampai ' + Loans.fmtDT(r.expiresAt); label = 'Ambil sekarang'; mode = 'claim'; tone = 'ok'; }
+                else if (r) { text = 'Antrean ke-' + Loans.position(r); label = 'Lihat antrean'; mode = 'view'; tone = 'warn'; }
+                else if (av.free > 0) { text = 'Tersedia ' + av.free + ' dari ' + av.total + ' eksemplar'; label = 'Pinjam'; mode = 'borrow'; tone = 'ok'; }
+                else { text = 'Stok habis' + (av.queue ? ', ' + av.queue + ' mengantre' : ''); label = 'Pesan antrean'; mode = 'reserve'; tone = 'none'; }
+                if (l || r) text += '. Stok tersisa ' + av.free + ' dari ' + av.total + ' eksemplar';
+                st.textContent = text; st.hidden = false; st.className = 'loan-status ' + tone; b.textContent = label; b.dataset.mode = mode;
+            });
+            const nb = document.querySelector('.nav-badge'); if (nb) { const n = Loans.badge(); nb.textContent = n; nb.hidden = !n; }
+        }
+        document.addEventListener('click', e => {
+            const b = e.target.closest('.pinjam-btn'); if (!b) return;
+            if (!Auth.current()) { mReg.href = 'register.html?next=index.html'; mLog.href = 'login.html?next=index.html'; modal.classList.add('open'); return; }
+            const mode = b.dataset.mode, bk = bookInfo(b.closest('.book-card'));
+            if (mode === 'view') { location.href = 'pinjaman.html'; return; }
+            if (mode === 'reserve') {
+                const r = Loans.reserve(bk); refreshLoans();
+                LoanUI.toast(r.ok ? 'Kamu masuk antrean ke-' + r.position + '. Saat buku tersedia, kamu punya ' + Loans.CLAIM_HOURS + ' jam untuk mengambilnya. <a href="pinjaman.html">Lihat antrean</a>' : r.msg);
+                return;
+            }
+            LoanUI.open(bk, mode);
+        });
+        LoanUI.onChange = refreshLoans;
+        refreshLoans();
+    </script>
+</body>
+</html>
