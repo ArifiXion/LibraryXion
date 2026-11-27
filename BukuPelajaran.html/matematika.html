@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ringkasan Buku: Matematika Kelas XI - LibraXion</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .reader-wrapper { max-width: 850px; margin: 45px auto; padding: 0 20px; }
+        .reader-paper { background: #ffffff; border: 2px solid #d9e3dc; border-radius: 24px; padding: 45px 50px; box-shadow: 0 15px 40px rgba(27, 67, 50, 0.1); }
+        .back-link { display: inline-block; margin-bottom: 25px; padding: 10px 20px; background: #eaf1ec; color: #0f2f28; text-decoration: none; font-weight: 800; font-size: 14px; border-radius: 25px; border: 1px solid #d9e3dc; transition: 0.3s; }
+        .back-link:hover { background: #0f2f28; color: white; }
+        .book-showcase { display: flex; align-items: center; gap: 30px; background: linear-gradient(135deg, #f4f7f3, #e6eff6); padding: 25px; border-radius: 20px; border: 1px solid #d9e3dc; margin-bottom: 30px; }
+        .showcase-cover { width: 170px; height: auto; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22); border: 3px solid #ffffff; flex-shrink: 0; }
+        .showcase-info h1 { font-family: var(--serif); font-size: 34px; color: #0f2f28; margin: 8px 0 6px 0; }
+        .showcase-info .author { color: #1b6ca8; font-weight: 800; font-size: 16px; margin-bottom: 12px; }
+        .showcase-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+        .meta-badge { background: #ffffff; color: #0f2f28; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 15px; border: 1px solid #d9e3dc; }
+        .story-content { color: #1b2b26; line-height: 1.9; font-size: 16.5px; }
+        .story-content h3 { font-family: var(--serif); color: #1b6ca8; font-size: 20px; margin-top: 28px; margin-bottom: 12px; border-left: 4px solid #e3a21a; padding-left: 12px; }
+        .story-content p { margin-bottom: 16px; text-align: justify; }
+        .quote-box { background: #f4f7f3; border-left: 4px solid #e3a21a; padding: 15px 20px; margin: 20px 0; font-style: italic; color: #0f2f28; border-radius: 0 12px 12px 0; }
+        .cerpen-box { background: #eaf1ec; border: 1.5px dashed #e3a21a; border-radius: 16px; padding: 25px; margin-top: 25px; }
+        .source-box { margin-top: 35px; background: #f4f7f3; border: 1px solid #e5ece7; border-radius: 16px; padding: 20px 25px; font-size: 14px; color: #52645c; }
+        @media (max-width: 650px) {
+            .reader-paper { padding: 28px 20px; }
+            .book-showcase { flex-direction: column; text-align: center; }
+            .showcase-meta { justify-content: center; }
+            .showcase-info h1 { font-size: 26px; }
+        }
+    </style>
+    <script src="../auth.js"></script>
+    <script src="../loans.js"></script>
+    <script>Auth.requireLogin('../');</script>
+    <script src="../features.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">LibraXion</div>
+        <div class="nav-links">
+            <a href="../index.html">← Beranda Perpustakaan</a>
+            <a href="../index.html#koleksi">Koleksi Buku</a>
+        </div>
+    </nav>
+
+    <main class="reader-wrapper">
+        <div class="reader-paper">
+            <a href="../index.html?genre=pelajaran#koleksi" class="back-link">← Kembali ke Daftar Buku</a>
+            <div class="book-showcase">
+                <img src="../BukuPelajaran/BukumatematikaXI.png" alt="Sampul buku Matematika kelas XI" class="showcase-cover">
+                <div class="showcase-info">
+                    <span class="book-category">Buku Pelajaran</span>
+                    <h1>Matematika</h1>
+                    <p class="author">Matriks, Limit, dan Statistika</p>
+                    <p style="font-size: 14px; color: #52645c; line-height: 1.6;">
+                        Buku siswa Matematika kelas XI yang membahas matriks, limit fungsi, dan statistika, tiga topik penting sebagai bekal berpikir logis dan membaca data.
+                    </p>
+                    <div class="showcase-meta">
+                        <span class="meta-badge">📘 Kelas XI</span><span class="meta-badge">🧩 3 Bab</span><span class="meta-badge">⭐ Matematika</span>
+                    </div>
+                </div>
+            </div>
+            <hr class="modal-divider">
+            <article class="story-content">
+                <h3>1. Gambaran Isi Buku</h3>
+                <p>Buku ini mengajak kamu memakai matematika sebagai alat: matriks untuk mengelola data berbentuk tabel, limit untuk memahami perilaku fungsi di sekitar suatu titik, dan statistika untuk meringkas serta menafsirkan data. Ketiganya sering muncul di dunia kerja, misalnya pengolahan data, pemrograman, hingga analisis hasil produksi.</p>
+                <h3>2. Peta Materi</h3>
+                <p>
+                    <strong>• Bab 1, Matriks:</strong> Mengenal bentuk dan jenis matriks, operasi penjumlahan, pengurangan, perkalian, serta determinan dan invers matriks 2 × 2.<br>
+                    <strong>• Bab 2, Limit Fungsi:</strong> Memahami arti mendekati suatu nilai, menghitung limit dengan substitusi langsung, dan menyelesaikan bentuk 0/0 dengan pemfaktoran.<br>
+                    <strong>• Bab 3, Statistika:</strong> Menyajikan data, menghitung mean, median, modus, serta ukuran penyebaran seperti jangkauan, lalu menafsirkannya.<br>
+                    
+                </p>
+                <h3>3. Konsep Kunci</h3>
+                <div class="quote-box">
+                    <strong>Determinan dan invers matriks 2 × 2.</strong> Untuk A = [a b ; c d] (baris dipisah titik koma), determinan det(A) = ad − bc. Jika det(A) ≠ 0, maka A<sup>−1</sup> = 1/det(A) × [d −b ; −c a].<br><strong>Limit.</strong> Coba substitusi langsung. Jika hasilnya 0/0, faktorkan lalu sederhanakan.<br><strong>Data.</strong> Mean = jumlah data ÷ banyak data; median = nilai tengah data terurut; modus = nilai yang paling sering muncul; jangkauan = data terbesar − data terkecil.
+                </div>
+                <p>Hafalkan polanya, tetapi pahami alasannya: invers hanya ada bila determinan tidak nol, karena kita membagi dengan nilai determinan.</p>
+                <h3>4. Tips Belajar</h3>
+                <p>Kerjakan contoh soal dengan tangan, jangan hanya membaca. Untuk matriks, cek hasil invers dengan mengalikannya kembali ke matriks awal (hasilnya harus matriks identitas). Untuk statistika, selalu urutkan data dulu sebelum mencari median.</p>
+                <div class="cerpen-box">
+                    <h4 style="font-family: var(--serif); color: #0f2f28; margin-bottom: 10px;">📝 Latihan Singkat dan Pembahasan</h4>
+                    <p style="font-size: 15px; margin-bottom: 12px;"><strong>Soal 1.</strong> Tentukan determinan dan invers dari A = [3 1 ; 5 2].<br><em>Pembahasan:</em> det(A) = 3·2 − 1·5 = 1, sehingga A<sup>−1</sup> = 1/1 × [2 −1 ; −5 3] = [2 −1 ; −5 3]. Cek: A × A<sup>−1</sup> = [1 0 ; 0 1].</p>
+                    <p style="font-size: 15px; margin-bottom: 12px;"><strong>Soal 2.</strong> Hitung lim x→3 (x² − 9)/(x − 3).<br><em>Pembahasan:</em> Substitusi langsung menghasilkan 0/0. Faktorkan: (x − 3)(x + 3)/(x − 3) = x + 3, jadi limitnya 3 + 3 = 6.</p>
+                    <p style="font-size: 15px; margin-bottom: 12px;"><strong>Soal 3.</strong> Data: 6, 7, 7, 8, 9, 10, 10, 10, 12. Tentukan mean, median, modus, dan jangkauan.<br><em>Pembahasan:</em> Jumlah = 79, banyak data = 9, mean = 79/9 ≈ 8,78. Median = data ke-5 = 9. Modus = 10. Jangkauan = 12 − 6 = 6.</p>
+                    
+                </div>
+            </article>
+            <section class="source-box">
+                <h4 style="font-family: var(--serif); color: #0f2f28; margin-bottom: 8px;">📌 Informasi Katalog dan Catatan</h4>
+                <ul style="list-style: none; line-height: 1.8;">
+                    <li><strong>Judul Buku:</strong> Matematika: Matriks, Limit, dan Statistika</li>
+                    <li><strong>Jenis:</strong> Buku Siswa</li>
+                    <li><strong>Jenjang:</strong> Kelas XI</li>
+                    <li><strong>Mata Pelajaran:</strong> Matematika</li>
+                    <li><strong>Catatan:</strong> Halaman ini berisi ringkasan materi dan latihan singkat untuk membantu belajar di Perpustakaan Digital SMK Bakti Persada Kendal. Gunakan buku teks resmi dan arahan guru sebagai rujukan utama.</li>
+                </ul>
+            </section>
+            <hr class="modal-divider" style="margin-top: 30px;">
+            <div style="text-align: center;">
+                <a href="../index.html?genre=pelajaran#koleksi" class="borrow-button" style="display: inline-block; width: auto; padding: 12px 30px;">Kembali ke Daftar Buku</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="../index.html" class="footer-brand">LibraXion</a>
+                    <p>Perpustakaan digital SMK Bakti Persada Kendal. Lihat ringkasan novel dan buku pelajaran kapan saja.</p>
+                </div>
+                <nav aria-label="Navigasi footer">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="../index.html">Beranda</a></li>
+                        <li><a href="../index.html#koleksi">Koleksi buku</a></li>
+                        <li><a href="../index.html?genre=drama#koleksi">Novel Drama</a></li>
+                        <li><a href="../index.html?genre=fantasy#koleksi">Novel Fantasy</a></li>
+                        <li><a href="../index.html?genre=komedi#koleksi">Novel Komedi</a></li>
+                        <li><a href="../index.html?genre=pelajaran#koleksi">Buku Pelajaran</a></li>
+                        <li data-guest><a href="../login.html">Masuk</a></li>
+                        <li data-guest><a href="../register.html">Daftar</a></li>
+                        <li data-user hidden><a href="../pinjaman.html">Pinjaman saya</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <h4>Informasi</h4>
+                    <ul>
+                        <li>16 buku: 12 novel dan 4 buku pelajaran</li>
+                        <li>Wajib daftar akun untuk membaca dan meminjam</li>
+                        <li>Pinjam 1 sampai 30 hari, maksimal 3 buku</li>
+                        <li>Denda keterlambatan Rp500 per hari</li>
+                        <li>Buku hilang didenda Rp100.000</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><a href="https://wa.me/6282226209972" target="_blank" rel="noopener">WhatsApp: 0822-2620-9972</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="team">
+                <h4>Tim pengembang</h4>
+                <ul class="team-list">
+                    <li class="member"><span class="avatar" aria-hidden="true">A</span><span><strong>Aiman</strong><small>Design &amp; Development</small></span></li>
+                    <li class="member"><span class="avatar" aria-hidden="true">W</span><span><strong>Waffa</strong><small>Web Research</small></span></li>
+                    <li class="member"><span class="avatar" aria-hidden="true">R</span><span><strong>Ramdhani</strong><small>Testing &amp; Release</small></span></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 LibraXion. Semua hak dilindungi.</span>
+                <span>SMK Bakti Persada Kendal</span>
+            </div>
+        </div>
+    </footer>
+    <script>Auth.renderNav('../');</script>
+</body>
+</html>
